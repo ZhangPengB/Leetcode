@@ -2,26 +2,25 @@ package com.company.leetcode.JVM;
 
 public class StringTest {
 
-    public void test() {
-        System.out.printf("test");
-        String s = new String("1") + new String("1");
-        String s1 = "11";
+    public static void test() {
+        System.out.println("test");
+        String s = new String("1") + new String("1");  //new出的对象放在堆空间，字符串变量s放在栈空间（存放指向堆空间地址）
+        String s1 = "11";  //s1指向字符串常量池
         System.out.println(s == s1);  //false
-        String s2 = s.intern();
+        String s2 = s.intern();  //调用intern返回一个指向字符串常量池的变量引用
         System.out.println(s2 == s1);  //true
-        System.out.println(s2 == s);  //false
-        System.out.println(s==s1);  //false
+        System.out.println(s2 == s);  //true
     }
 
     public static void main(String[] args) {
 
-
+        //==运算符用来判断两个对象是否指向同一个内存地址
 //        String s = new String("11");
         String s = new String("1") + new String("1");
-        s.intern();  //在调用intern() 方法之前，字符串常量池中已经存在“11”，所以s指向的仍为堆空间对象地址
+        s.intern();  //调用intern方法至后，jvm在字符串常量池中放一份'11',此时s指向字符串常量池
         String s2 = "11";
-        System.out.println(s == s2);  //false
-
+        System.out.println(s == s2);  //true
+        test();
 //
 //        //拼接操作
 //        //
