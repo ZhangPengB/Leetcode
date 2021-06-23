@@ -10,6 +10,7 @@ public class med_1775 {
             sum2 += num;
         }
 
+
         if (sum1 == sum2) return 0;
         if (sum1 > sum2) return minOperations(nums2, nums1);
 
@@ -23,6 +24,12 @@ public class med_1775 {
             freq[num - 1]++;
         }
 
+        for (int i=0;i<freq.length;i++)
+        {
+            System.out.print(i+":"+freq[i]);
+        }
+
+        //贪心思想：从5开始，对应的是nums1可以最大程度递增量为5；nums2可以最大程度递减量为5
         for (int i = freq.length - 1; i >= 0; i--) {
             while (freq[i] > 0 && diff > 0) {
                 res++;

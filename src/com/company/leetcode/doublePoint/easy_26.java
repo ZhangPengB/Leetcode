@@ -6,7 +6,7 @@ public class easy_26 {
         if (n<1) return 0;
         if (n==1) return 1;
         int result=1;
-        //将不重复的元素移动到数组左侧
+        //将不重复的元素移动(通过复制）到数组左侧
         int left=1,right=1;
         while(right<n)
         {

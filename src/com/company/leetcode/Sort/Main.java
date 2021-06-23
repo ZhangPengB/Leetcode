@@ -58,7 +58,8 @@ class Solution {
 
 class quickSort
 {
-    public int getStandard(int[] arr,int l, int r)
+    //单趟排序
+    public int singlePass(int[] arr,int l, int r)
     {
         //基准数据
         int key=arr[l];
@@ -71,7 +72,7 @@ class quickSort
             }
             if (l<r)
             {
-                arr[l]=arr[r];
+                arr[l]=arr[r];  //找到后，因为元素值是小于key值的，所以移到key值左边
             }
             //从左边找第一个大于基准元素的数值
             while(l<r && arr[l]<=key)
@@ -80,7 +81,7 @@ class quickSort
             }
             if (l<r)
             {
-                arr[r]=arr[l];
+                arr[r]=arr[l];  //找到后，因为元素是大于key值的，所以移到key值后面
             }
         }
         //循环结束时，l==r，将key值赋给改位置（分割点）
@@ -88,21 +89,21 @@ class quickSort
         return l;
     }
 
-    public void quickSort(int[] arr,int l,int r)
+    public void quickSort1(int[] arr,int l,int r)
     {
         if (l<r)
         {
-            int standard=getStandard(arr,l,r);
+            int standard=singlePass(arr,l,r);
             //左边排序
-            quickSort(arr,l,standard-1);
+            quickSort1(arr,l,standard-1);
             //右边排序
-            quickSort(arr,standard+1,r);
+            quickSort1(arr,standard+1,r);
         }
     }
 
     public int quickSelect(int[] arr,int l,int r,int index)
     {
-        int standard=getStandard(arr,l,r);
+        int standard=singlePass(arr,l,r);
         if (standard==index)
         {
             return arr[index];
@@ -127,7 +128,7 @@ public class Main
         int[] arr={49,38,58,97,76,13,27,49};
         int n=arr.length;
         quickSort s=new quickSort();
-        s.quickSort(arr,0,n-1);
+        s.quickSort1(arr,0,n-1);
         for (int e:arr)
         {
             System.out.print(e+" ");

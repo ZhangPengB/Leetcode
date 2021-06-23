@@ -42,11 +42,11 @@ public class med_1049 {
         int target=sum/2;  //目标背包容量
         int[] dp=new int[sum];  //dp数组长度初始化等于石头重量之和，因为背包最大容量最多也就是所有石头重量之和，也可以初始化长度为target+1
         System.out.println(dp[2]);
-        for (int i=0;i< stones.length;i++)         //遍历物品
-        {
-            for (int j=target;j>=stones[i];j--)     //遍历背包，倒叙
+        //遍历物品
+        for (int stone : stones) {
+            for (int j = target; j >= stone; j--)     //遍历背包，倒叙
             {
-                dp[j]=Math.max(dp[j],dp[j-stones[i]]+stones[i]);
+                dp[j] = Math.max(dp[j], dp[j - stone] + stone);
             }
         }
         for (int e:dp)
@@ -55,4 +55,22 @@ public class med_1049 {
         }
         return sum-dp[target]-dp[target];
     }
+
+    public int lastStoneWeightIII(int[] arr)
+    {
+        int sum=Arrays.stream(arr).sum();
+        int target=sum/2;
+        int[] dp=new int[target+1];
+        for (int e:arr)
+        {
+            for (int j=target;j>=e;j--)
+            {
+                dp[j]=Integer.max(dp[j],dp[j-e]+e);
+            }
+        }
+        int another=sum-dp[target];
+        return another-dp[target];
+    }
+
+
 }

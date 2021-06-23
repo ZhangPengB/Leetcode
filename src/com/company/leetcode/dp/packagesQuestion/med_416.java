@@ -32,14 +32,36 @@ public class med_416 {
         if (sum%2==1) return false;
         int target=sum/2;
         int[] dp=new int[sum];
-        for (int i=0;i<nums.length;i++)
-        {
-            for (int j=target;j>=nums[i];j--)
-            {
-                dp[j]=Math.max(dp[j],dp[j-nums[i]]+nums[i]);
-                if (dp[j]==target) return true;
+        for (int num : nums) {
+            for (int j = target; j >= num; j--) {
+                dp[j] = Math.max(dp[j], dp[j - num] + num);
+                if (dp[j] == target) return true;
             }
         }
         return false;
+    }
+
+    public boolean canPartition2(int[] arr)
+    {
+        int n=arr.length;
+        int sum=0;
+        int maxNum=0;
+        for (int e:arr)
+        {
+            maxNum=Integer.max(maxNum,e);
+            sum+=e;
+        }
+        if (sum%2==1) return false;
+        int target=sum/2;  //背包容量
+        if (maxNum>target) return  false;
+        int[] dp=new int[target+1];
+        //遍历物品
+        for (int k : arr) {
+            for (int j = target; j >= k; j--)  //遍历背包
+            {
+                dp[j] = Integer.max(dp[j], dp[j - k] + k);
+            }
+        }
+        return dp[target] == target;
     }
 }

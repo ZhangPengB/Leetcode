@@ -29,4 +29,43 @@ public class med_474 {
         }
         return dp[m][n];
     }
+
+
+    public int findMaxForm1(String[] strs, int m, int n)
+    {
+        int[][] dp=new int[m+1][n+1];
+        //看不出初始化
+        for (String str:strs)    //先遍历物品
+        {
+            int[] count=countZeroAndOne(str);
+            int a=count[0],b=count[1];
+            for (int i=m;i>=a;i--)
+            {
+                for (int j=n;j>=b;j--)
+                {
+                    dp[i][j]=Math.max(dp[i][j],dp[i-a][j-b]+1);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    //统计字符串中0 和 1 的个数
+    public int[] countZeroAndOne(String str)
+    {
+        int[] count=new int[2];
+        for (int i=0;i<str.length();i++)
+        {
+            char c=str.charAt(i);
+            if (c=='0')
+            {
+                count[0]++;
+            }
+            else
+            {
+                count[1]++;
+            }
+        }
+        return count;
+    }
 }

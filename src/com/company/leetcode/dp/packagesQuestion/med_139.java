@@ -64,8 +64,8 @@ public class med_139 {
         return dp[s.length()];
     }
 
-    public static boolean wordBreak2(String s, List<String> wordDict) {
-        Set<String> S = new HashSet<>(wordDict);
+    public static boolean wordBreak2(String s, String[] wordDict) {
+        Set<String> S = new HashSet<>(Arrays.asList(wordDict));
 
         int start = 0;
         for (int i = 0; i <= s.length(); i++) {
@@ -81,10 +81,10 @@ public class med_139 {
 
     public static void main(String[] args) {
         String s = "aaaaaaa";
-//        String[] wordDict = {"leet", "code"};
-        List<String> wordDict = new ArrayList<String>();
-        wordDict.add("aaaa");
-        wordDict.add("aaa");
-        System.out.println(wordBreak1(s, wordDict));
+        String[] wordDict = {"leet", "code"};
+//        List<String> wordDict = new ArrayList<String>();
+//        wordDict.add("aaaa");
+//        wordDict.add("aaa");
+        System.out.println(wordBreak2(s, wordDict));
     }
 }
